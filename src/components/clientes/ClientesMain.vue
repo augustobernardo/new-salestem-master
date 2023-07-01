@@ -9,7 +9,7 @@
     </div>
     <table class="table">
       <thead>
-        <tr>
+        <tr class="tableTitle">
           <th v-for="(column, index) in columns" :key="index">{{ column }}</th>
           <th>Ações</th>
         </tr>
@@ -200,6 +200,18 @@ td {
   border-bottom: 1px solid #ddd;
 }
 
+.tableTitle {
+  color: var(--dark);
+  font-family: var(--poppins);
+}
+
+h1 {
+  color: var(--dark);
+  font-size: 24px;
+  font-family: var(--poppins);
+}
+
+
 .row-editing {
   background-color: #f9f9f9;
 }
@@ -209,6 +221,8 @@ td {
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  font-family: var(--lato);
+  color: var(--dark);
 }
 
 .edit-button,
@@ -248,7 +262,17 @@ td {
   justify-content: center;
   align-items: center;
   margin-top: 16px;
+  color: var(--dark);
+  font-family: var(--lato);
 }
+
+.pagination span {
+  margin: 0 4px;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: none;
+}
+
 
 .pagination button {
   margin: 0 4px;
