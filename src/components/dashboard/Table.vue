@@ -25,6 +25,7 @@ import Profile from "../../assets/img/people.png";
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import jsonData from '../vendas/VendaData.json'; // Importar o arquivo JSON com os dados
 
 export default defineComponent({
     data() {
@@ -44,7 +45,7 @@ export default defineComponent({
             // const endIndex = startIndex + this.itemsPerPage;
 
             const dadosLocalStorage = JSON.parse(localStorage.getItem('tabelaDadosVendas'));
-            
+
             const storagelenght = dadosLocalStorage.length;
 
             const startIndex = storagelenght - 5;
@@ -59,16 +60,27 @@ export default defineComponent({
     created() {
         const dadosLocalStorage = localStorage.getItem('tabelaDadosVendas');
 
+        // this.items = JSON.parse(dadosLocalStorage);
+
+        if (dadosLocalStorage) {
             this.items = JSON.parse(dadosLocalStorage);
+        } else {
+            this.items = jsonData;
+            this.salvarLocalStorage();
+        }
 
         if (this.items.length > 0) {
             this.columns = Object.keys(this.items[0]).filter((column) => column !== 'id' && column !== 'editavel' && column !== 'copia');
         }
     },
+    methods: {
+    salvarLocalStorage() {
+      localStorage.setItem('tabelaDadosVendas', JSON.stringify(this.items));
+    },
+    },
 
 });
 </script>
-
 <style scoped>
  .table {
     width: 100%;
